@@ -1,0 +1,15 @@
+node_modules
+dist
+.DS_Store
+*.local
+*.log
+.env
+.env.*
+!.env.example
+
+# local agent/IDE artifacts — never ship or commit
+.opencode/
+.agents/
+.claude/
+.cursor/
+.playwright-cli/
