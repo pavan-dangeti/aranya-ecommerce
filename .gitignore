@@ -6,10 +6,3 @@ dist
 .env
 .env.*
 !.env.example
-
-# local agent/IDE artifacts — never ship or commit
-.opencode/
-.agents/
-.claude/
-.cursor/
-.playwright-cli/
