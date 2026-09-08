@@ -1,109 +1,200 @@
-# ARANYA — Ancient Wisdom. Naturally Reimagined.
+<div align="center">
 
-A premium 3D herbal wellness e-commerce concept. Original brand, original identity —
-built to demonstrate a production-quality storefront: cinematic 3D storytelling,
-full shopping flows, and a complete operations console. This is a **frontend
-prototype**; all data is mock/in-memory and no real payments, emails or
-databases are involved.
+# 🌿 ARANYA
 
-> Demo storefront. No real payments, no medical claims, no certification claims.
-> Products, reviews, people and orders are illustrative.
+**Ancient Wisdom. Naturally Reimagined.**
 
-## Run it
+*A Premium 3D Herbal Wellness E-Commerce Platform*
 
-```bash
-npm install
-npm run dev        # http://localhost:5173
-```
+[![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](./LICENSE)
+[![Demo](https://img.shields.io/badge/📹_Demo-Google_Drive-blue?style=for-the-badge)](https://drive.google.com/drive/folders/1xwFmgx-OR8Zz4ChvHGvLr5EbTIM3jJYP?usp=drive_link)
 
-Other scripts:
+![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
+![Three.js](https://img.shields.io/badge/Three.js-000000?style=flat-square&logo=three.js&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-646CFF?style=flat-square&logo=vite&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white)
+![Zustand](https://img.shields.io/badge/Zustand-State_Management-orange?style=flat-square)
+![WebGL](https://img.shields.io/badge/WebGL-990000?style=flat-square&logo=webgl&logoColor=white)
 
-```bash
-npm run typecheck  # tsc --noEmit
-npm run lint       # eslint src
-npm run build      # typecheck + production build → dist/
-npm run preview    # serve the production build (port 4173)
-```
+> A production-quality frontend prototype for a premium herbal wellness brand. Features cinematic 3D storytelling, full shopping flows, a complete operations console, role-based auth, and ⌘K command-palette search — all built as a frontend-only demo with mock/in-memory data. No real payments, emails, or databases.
 
-## Authentication (prototype scope)
+</div>
 
-This build ships a **demo role-split experience** for presentation purposes:
+---
 
-- `/login` — account-type chooser (Customer / Admin)
-- `/login/customer`, `/register/customer` — customer auth; accounts are created
-  in-memory and live only for the browser session
-- `/login/admin` — operations-console sign-in
-- `/admin` — dashboard, products, orders, customers, inventory, reviews
+## 🎬 Demo
 
-Demo accounts for the prototype live in `src/data/demo-accounts.ts` and are
-**never rendered in the UI**. No passwords are persisted anywhere; sessions
-store only the public profile ("Remember me" → localStorage, otherwise
-sessionStorage).
+👉 **[Watch Full Demo on Google Drive](https://drive.google.com/drive/folders/1xwFmgx-OR8Zz4ChvHGvLr5EbTIM3jJYP?usp=drive_link)**
 
-| Before production | Why |
-| --- | --- |
-| Replace mock auth with a real identity provider | identity, sessions, password handling |
-| Enforce admin server-side | client role checks are UX, not authorization |
-| Add rate limiting on auth endpoints | brute-force protection |
-| Move catalog/orders/inventory to a real database | prototype state is local-only |
-| Integrate a real payment gateway and transactional email | checkout is simulated |
-| Set sitemap domain in `public/robots.txt` | deployment configuration |
+> Demo storefront — no real payments, no medical claims, no certification claims. Products, reviews, people and orders are illustrative.
 
-All backend integration (database, real auth, payments, email, RLS,
-server-side authorization) is **intentionally deferred**. The service layer
-(`src/services/api.ts`) is the single seam where those calls land later —
-see `src/services/README.md` for the deferred integration notes.
+---
 
-## What's inside
+## ✨ What's Inside
 
-- **Home** — 10 cinematic sections: 3D hero (botanical orb, orbiting leaves,
-  particles), ingredient origin cards with tilt physics, featured products,
-  interactive 3D product viewer, journal preview, scroll-driven wellness
-  journey, sustainability, testimonials, newsletter.
-- **Shop** — 22 products, 6 categories; URL-synced search / category / price /
-  rating filters, 5 sort modes, load-more pagination.
-- **Product pages** — 3D vessel viewer (drag/zoom), tabs, reviews with
-  distribution + local review writing, related products, sticky mobile CTA.
-- **Cart & checkout** — persistent cart (localStorage), animated drawer,
-  free-shipping progress, validated checkout (UPI / simulated card / COD),
-  order confirmation with ETA.
-- **Auth & profile** — login / register / forgot-password / profile with order
-  history. Session-only by design; no credentials are ever stored or bundled.
-- **Admin** — revenue chart, orders, inventory (low-stock flags), customers,
-  reviews on illustrative data.
-- **Journal / Story / Ingredients / Support pages** — five full essays and
-  every footer route implemented.
-- **⌘K command-palette search** across names, categories, ingredients, tags.
+### 🏠 Home — 10 Cinematic Sections
+- 3D hero with botanical orb, orbiting leaves, and particles
+- Ingredient origin cards with tilt physics
+- Featured products with interactive 3D product viewer
+- Journal preview and scroll-driven wellness journey
+- Sustainability section, testimonials, newsletter
 
-## Architecture
+### 🛍️ Shop
+- 22 products across 6 categories
+- URL-synced search, category, price, and rating filters
+- 5 sort modes with load-more pagination
+
+### 📦 Product Pages
+- 3D vessel viewer with drag/zoom interaction
+- Review tabs with distribution chart + local review writing
+- Related products and sticky mobile CTA
+
+### 🛒 Cart & Checkout
+- Persistent cart (localStorage)
+- Animated drawer with free-shipping progress
+- Validated checkout — UPI / simulated card / COD
+- Order confirmation with ETA
+
+### 🔐 Auth & Profile
+- Login / Register / Forgot-password / Profile with order history
+- Session-only by design — no credentials stored or bundled
+- Demo role-split experience (Customer / Admin)
+
+### 🖥️ Admin Console
+- Revenue chart, orders management
+- Inventory with low-stock flags
+- Customers and reviews on illustrative data
+
+### 📖 Content Pages
+- Journal, Story, Ingredients, Support — 5 full essays
+- Every footer route implemented
+
+### ⌘K Command-Palette Search
+- Search across product names, categories, ingredients, and tags
+
+---
+
+## 🏗️ Architecture
 
 ```
 src/
-├── components/   3d/ · cart/ · checkout-adjacent · layout/ · products/ ·
-│                 search/ · sections/ · ui/
-├── data/         mock catalog, articles, ingredients, reviews, admin fixtures
-├── hooks/        media queries, WebGL detection, scroll lock, meta, escape
-├── pages/        one file per route (+ auth/, admin/)
-├── services/     api.ts — the ONLY data access layer (see services/README.md
-│                 for the deferred backend swap map + intended schema)
-├── store/        zustand: cart, wishlist, ui, auth (persisted where safe)
-├── types/        Product, Category, Review, Order, User, …
-└── utils/        cn, format, validate, color, motion presets, storage
+├── components/    3d/ · cart/ · checkout-adjacent · layout/ · products/
+│                  search/ · sections/ · ui/
+├── data/          mock catalog, articles, ingredients, reviews, admin fixtures
+├── hooks/         media queries, WebGL detection, scroll lock, meta, escape
+├── pages/         one file per route (+ auth/, admin/)
+├── services/      api.ts — the ONLY data access layer
+├── store/         zustand: cart, wishlist, UI, auth (persisted where safe)
+├── types/         Product, Category, Review, Order, User...
+└── utils/         cn, format, validate, color, motion presets, storage
 ```
 
-Key decisions:
+---
 
-- **3D is procedural** — zero model downloads. Three/R3F chunks are lazy,
-  canvases mount only near the viewport, pause off-screen/hidden tabs, and
-  degrade to designed 2D fallbacks when WebGL is unavailable.
-- **Product art is generated SVG** (`ProductVisual`) — crisp at any size, no
-  image assets, shared palette with the 3D materials.
-- **All product imagery/claims policy**: "traditionally used in Ayurveda"
-  phrasing only; nothing claims certifications or outcomes.
+## 🧠 Key Design Decisions
 
-## Accessibility & performance notes
+**3D is procedural** — zero model downloads. Three.js/R3F chunks are lazy, canvases mount only near the viewport, pause off-screen/hidden tabs, and degrade to designed 2D fallbacks when WebGL is unavailable.
 
-- Semantic landmarks, skip-link, labelled controls, focus-visible rings,
-  `prefers-reduced-motion` honoured globally (`MotionConfig` + CSS + 3D gates).
-- Route-level code splitting; three.js isolated in lazy chunks; canvases pause
-  when off-screen (`frameloop="never"`).
+**Product art is generated SVG** — crisp at any size, no image assets, shared palette with the 3D materials.
+
+**Imagery/claims policy** — "traditionally used in Ayurveda" phrasing only; nothing claims certifications or outcomes.
+
+---
+
+## ♿ Accessibility & Performance
+
+- Semantic landmarks, skip-link, labelled controls, focus-visible rings
+- `prefers-reduced-motion` honoured globally (MotionConfig + CSS + 3D gates)
+- Route-level code splitting — Three.js isolated in lazy chunks
+- Canvases pause when off-screen (`frameloop="never"`)
+
+---
+
+## 🔐 Authentication (Prototype Scope)
+
+| Route | Purpose |
+|---|---|
+| `/login` | Account-type chooser (Customer / Admin) |
+| `/login/customer`, `/register/customer` | Customer auth — in-memory only |
+| `/login/admin` | Operations console sign-in |
+| `/admin` | Dashboard, products, orders, customers, inventory, reviews |
+
+Demo accounts live in `src/data/demo-accounts.ts` and are never rendered in the UI. No passwords are persisted anywhere — sessions store only the public profile.
+
+---
+
+## 📋 Before Production
+
+| Item | Why |
+|---|---|
+| Replace mock auth with a real identity provider | Identity, sessions, password handling |
+| Enforce admin role server-side | Client role checks are UX, not authorization |
+| Add rate limiting on auth endpoints | Brute-force protection |
+| Move catalog/orders/inventory to a real database | Prototype state is local-only |
+| Integrate a real payment gateway and transactional email | Checkout is simulated |
+
+All backend integration (database, real auth, payments, email, RLS, server-side authorization) is intentionally deferred. The service layer (`src/services/api.ts`) is the single seam where those calls land later.
+
+---
+
+## 🛠️ Tech Stack
+
+| Technology | Purpose |
+|---|---|
+| React + TypeScript | Core framework |
+| Vite | Build tooling |
+| Three.js / R3F | 3D rendering and WebGL |
+| Tailwind CSS | Styling |
+| Zustand | State management |
+| React Router | Navigation |
+| Framer Motion | Animations |
+| Lucide React | Icons |
+
+---
+
+## 🚀 Getting Started
+
+```bash
+# Install dependencies
+npm install
+
+# Run development server
+npm run dev
+# http://localhost:5173
+```
+
+**Other scripts:**
+```bash
+npm run typecheck   # tsc --noEmit
+npm run lint        # eslint src
+npm run build       # typecheck + production build → dist/
+npm run preview     # serve the production build (port 4173)
+```
+
+---
+
+## 🗺️ Roadmap
+
+- [ ] Real backend integration (database, auth, payments)
+- [ ] Server-side rendering (Next.js migration)
+- [ ] Real payment gateway (Razorpay / Stripe)
+- [ ] Transactional email system
+- [ ] CI/CD pipeline
+- [ ] Cloud deployment
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License.
+
+---
+
+<div align="center">
+
+🌿 **ARANYA — Where ancient wisdom meets modern craft.**
+
+*A frontend showcase of cinematic 3D e-commerce experience.*
+
+</div>
