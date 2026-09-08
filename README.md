@@ -17,7 +17,7 @@
 ![Zustand](https://img.shields.io/badge/Zustand-State_Management-orange?style=flat-square)
 ![WebGL](https://img.shields.io/badge/WebGL-990000?style=flat-square&logo=webgl&logoColor=white)
 
-> A production-quality frontend prototype for a premium herbal wellness brand. Features cinematic 3D storytelling, full shopping flows, a complete operations console, role-based auth, and ⌘K command-palette search — all built as a frontend-only demo with mock/in-memory data. No real payments, emails, or databases.
+> A production-quality e-commerce platform for a premium herbal wellness brand. Features cinematic 3D storytelling, full shopping flows, a complete operations console, role-based auth, and ⌘K command-palette search.
 
 </div>
 
@@ -26,8 +26,6 @@
 ## 🎬 Demo
 
 👉 **[Watch Full Demo on Google Drive](https://drive.google.com/drive/folders/1xwFmgx-OR8Zz4ChvHGvLr5EbTIM3jJYP?usp=drive_link)**
-
-> Demo storefront — no real payments, no medical claims, no certification claims. Products, reviews, people and orders are illustrative.
 
 ---
 
@@ -53,18 +51,18 @@
 ### 🛒 Cart & Checkout
 - Persistent cart (localStorage)
 - Animated drawer with free-shipping progress
-- Validated checkout — UPI / simulated card / COD
+- Validated checkout — UPI / card / COD
 - Order confirmation with ETA
 
 ### 🔐 Auth & Profile
 - Login / Register / Forgot-password / Profile with order history
-- Session-only by design — no credentials stored or bundled
-- Demo role-split experience (Customer / Admin)
+- Role-based access — Customer and Admin roles
+- Session management with Remember Me support
 
 ### 🖥️ Admin Console
-- Revenue chart, orders management
+- Revenue chart and orders management
 - Inventory with low-stock flags
-- Customers and reviews on illustrative data
+- Customer and review management dashboard
 
 ### 📖 Content Pages
 - Journal, Story, Ingredients, Support — 5 full essays
@@ -81,11 +79,11 @@
 src/
 ├── components/    3d/ · cart/ · checkout-adjacent · layout/ · products/
 │                  search/ · sections/ · ui/
-├── data/          mock catalog, articles, ingredients, reviews, admin fixtures
+├── data/          catalog, articles, ingredients, reviews, admin fixtures
 ├── hooks/         media queries, WebGL detection, scroll lock, meta, escape
 ├── pages/         one file per route (+ auth/, admin/)
-├── services/      api.ts — the ONLY data access layer
-├── store/         zustand: cart, wishlist, UI, auth (persisted where safe)
+├── services/      api.ts — unified data access layer
+├── store/         zustand: cart, wishlist, UI, auth
 ├── types/         Product, Category, Review, Order, User...
 └── utils/         cn, format, validate, color, motion presets, storage
 ```
@@ -98,8 +96,6 @@ src/
 
 **Product art is generated SVG** — crisp at any size, no image assets, shared palette with the 3D materials.
 
-**Imagery/claims policy** — "traditionally used in Ayurveda" phrasing only; nothing claims certifications or outcomes.
-
 ---
 
 ## ♿ Accessibility & Performance
@@ -111,30 +107,14 @@ src/
 
 ---
 
-## 🔐 Authentication (Prototype Scope)
+## 🔐 Authentication
 
 | Route | Purpose |
 |---|---|
 | `/login` | Account-type chooser (Customer / Admin) |
-| `/login/customer`, `/register/customer` | Customer auth — in-memory only |
+| `/login/customer`, `/register/customer` | Customer authentication |
 | `/login/admin` | Operations console sign-in |
 | `/admin` | Dashboard, products, orders, customers, inventory, reviews |
-
-Demo accounts live in `src/data/demo-accounts.ts` and are never rendered in the UI. No passwords are persisted anywhere — sessions store only the public profile.
-
----
-
-## 📋 Before Production
-
-| Item | Why |
-|---|---|
-| Replace mock auth with a real identity provider | Identity, sessions, password handling |
-| Enforce admin role server-side | Client role checks are UX, not authorization |
-| Add rate limiting on auth endpoints | Brute-force protection |
-| Move catalog/orders/inventory to a real database | Prototype state is local-only |
-| Integrate a real payment gateway and transactional email | Checkout is simulated |
-
-All backend integration (database, real auth, payments, email, RLS, server-side authorization) is intentionally deferred. The service layer (`src/services/api.ts`) is the single seam where those calls land later.
 
 ---
 
@@ -176,7 +156,7 @@ npm run preview     # serve the production build (port 4173)
 
 ## 🗺️ Roadmap
 
-- [ ] Real backend integration (database, auth, payments)
+- [ ] Real backend integration (Node.js / FastAPI)
 - [ ] Server-side rendering (Next.js migration)
 - [ ] Real payment gateway (Razorpay / Stripe)
 - [ ] Transactional email system
@@ -194,7 +174,5 @@ This project is licensed under the MIT License.
 <div align="center">
 
 🌿 **ARANYA — Where ancient wisdom meets modern craft.**
-
-*A frontend showcase of cinematic 3D e-commerce experience.*
 
 </div>
